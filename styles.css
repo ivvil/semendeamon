@@ -1,21 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playwrite+AU+SA:wght@100..400&family=Playwrite+VN:wght@100..400&family=Press+Start+2P&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 
 :root {
-  --primary-color: #007bff;
-  --secondary-color: #6c757d;
-  --success-color: #28a745;
-  --info-color: #17a2b8;
-  --warning-color: #ffc107;
-  --danger-color: #dc3545;
-  --light-color: #f8f9fa;
-  --dark-color: #343a40;
   --background-color: #323232;
+  --background-color-scrollbar: #1c1c1c;
   --card-background-color: #424242;
   --text-color: #ffffff;
 }
-html{
-    background-color: var(--background-color);
-    font-family: 'Press Start 2P', cursive;
+
+html {
+  background-color: var(--background-color);
+  font-family: "Press Start 2P", cursive;
 }
 
 #card-container {
@@ -24,35 +18,97 @@ html{
   justify-content: center;
 }
 
-#card {
-  width: 200px;
+.card {
+  width: 250px;
   height: 300px;
   margin: 10px;
-  border: 1px solid #666666;
-  border-radius: 5px;
-  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  text-align: center;
-  padding: 20px;
+  perspective: 1000px; 
+  cursor: pointer;
+  position: relative;
   background-color: var(--card-background-color);
-  transition: transform 0.5s;
+  overflow: hidden;
+  border-radius: 5px;
   color: var(--text-color);
-  
+  transition: transform 0.25s, box-shadow 0.25s;
+
 }
 
-#card:hover{
-    transform: scale(1.1);
-    
+.card:hover{
+    box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.5);
+    transform: translateY(-10px);
 }
 
-#card img {
+.card-inner {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  user-select: none;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  position: relative;
 }
 
-#card-content {
+.card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.card-front {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
   padding: 10px;
+  background-color: var(--card-background-color);
+  z-index: 2;
 }
 
+.card-front img {
+  width: 100%;
+  height: 100%;
+  max-height: 150px; 
+  object-fit: contain;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-back {
+  font-size: small;
+  padding: 10px;
+  box-sizing: border-box;
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px;
+  flex-direction: column;
+  background-color: var(--card-background-color);
+}
+
+::-webkit-scrollbar {
+width: 10px;
+padding: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--background-color-scrollbar);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--card-background-color);
+    border-radius: 5px;
+    border: 2px solid var(--background-color);
+}
