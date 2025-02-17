@@ -1,0 +1,3 @@
+[submodule "pokemon"]
+	path = pokemon
+	url = git@github.com:fanzeyi/pokemon.json.git
