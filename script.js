@@ -47,6 +47,9 @@ function displayPokemonTypes(types) {
  * @param {string} type The pokemon type to filter by.
  */
 function filterPokemonesByType(pokemones, type) {
+	if (!type) {
+		return pokemones;
+	}
 	return pokemones.filter((pokemon) => pokemon.type.includes(type));
 }
 
