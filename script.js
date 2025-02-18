@@ -35,7 +35,7 @@ function displayPokemonTypes(types) {
 	const select = $("nav #tipos");
 	select.empty();
 
-	select.append(new Option("Select a type", ""));
+	select.append(new Option("All types", ""));
 
 	for (let type of types) {
 		select.append(new Option(type.english, type.english));
