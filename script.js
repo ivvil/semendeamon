@@ -50,11 +50,12 @@ function filterPokemonesByType(type = "") {
 
 	$('[data-ptype]').each((idx, element) => {
 		const $pkmn = $(element);
-		const types = $pkmn.data('ptype').toString().toLowerCase().split(' ');
-		
-		$pkmn.toggleClass('aria-selected', types.includes(normalizedType));
-	  });
-	}	
+		const types = $pkmn.data('ptype').map((e) => e.toLowerCase());
+
+
+		$pkmn.attr('aria-selected', types.includes(normalizedType));
+	});
+}
 
 function displayPokemones(pokemones) {
 	let container = $("#card-container")
@@ -67,7 +68,7 @@ function displayPokemones(pokemones) {
 
 		let clone = $(template.content.cloneNode(true));
 
-		clone.find(".card").attr("data-ptype", pokemon.type);
+		clone.find(".card").attr("data-ptype", JSON.stringify(pokemon.type));
 
 		clone
 			.find(".card-front img")
@@ -77,7 +78,7 @@ function displayPokemones(pokemones) {
 		clone.find(".nombre-pokemon").text(pokemon.name.english);
 
 		let typeList = clone.find(".tipos ul");
-		$.each(pokemon.type, function (idx, type) {					
+		$.each(pokemon.type, function (idx, type) {
 			$("<li>").text(type).appendTo(typeList);
 		});
 

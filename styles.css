@@ -124,7 +124,7 @@ button[type="submit"]{
   background-color: var(--card-background-color);
 }
 
-.aria-selected{
+.card[aria-selected="true"] {
   animation: card-selected 2s linear infinite;
 }
 ::-webkit-scrollbar {
