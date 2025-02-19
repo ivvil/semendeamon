@@ -17,9 +17,22 @@ $(document).ready(function () {
 		dataType: "json",
 		success: (data) => {
 			displayPokemonTypes(data);
+			$(".toggle-button").each((idx, elmnt) => {
+				const $button = $(elmnt);
+				$button.attr("data-toggle-state", "false");
+				console.log($button);
+				$button.on("click", (evt) => {
+					console.log(evt);
+					const $target = $(evt.target);
+		
+					const currState = $target.attr("data-toggle-state");
+					const newState = currState == "true" ? "false" : "true";
+		
+					$target.attr("data-toggle-state", newState);
+				})
+			})
 		},
 	});
-
 
 	$("#filter-form").submit((evt) => {
 		evt.preventDefault();
@@ -29,29 +42,40 @@ $(document).ready(function () {
 });
 
 function displayPokemonTypes(types) {
-	/**
-	 * @type {HTMLSelectElement} The select to display pokemon types for filtering
-	 */
-	const select = $("nav #tipos");
-	select.empty();
+    const $select = $("nav #types-select");
 
-	select.append(new Option("All types", ""));
+    const $allTypes = $("<button>", {
+        text: "Todos",
+        class: "toggle-button",
+        click: () => filterPokemonesByType()
+    });
+    $select.append($allTypes);
 
-	for (let type of types) {
-		select.append(new Option(type.english, type.english));
-	}
+    types.forEach(type => {
+        const $button = $("<button>", {
+            text: type.english,
+            class: "toggle-button",
+            click: () => filterPokemonesByType(type.english)
+        });
+        $select.append($button);
+    });
 }
 
 /**
- * @param {string} type The pokemon type to filter by.
+ * @param {Array<string>} type The pokemon type to filter by.
  */
-function filterPokemonesByType(type = "") {
+function filterPokemonesByType(type = []) {
 	const normalizedType = type.toLowerCase();
 
 	$('[data-ptype]').each((idx, element) => {
 		const $pkmn = $(element);
 		const types = $pkmn.data('ptype').map((e) => e.toLowerCase());
 
+		/* if (types.includes(normalizedType)) {
+			$pkmn.on("click", () => {
+
+			})
+		} */
 
 		$pkmn.attr('aria-selected', types.includes(normalizedType));
 	});
