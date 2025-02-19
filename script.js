@@ -24,7 +24,7 @@ $(document).ready(function () {
 	$("#filter-form").submit((evt) => {
 		evt.preventDefault();
 		let tipo = $("#tipos").val();
-		displayPokemones(filterPokemonesByType(pokemones, tipo));
+		filterPokemonesByType(tipo);
 	});
 });
 
@@ -43,15 +43,18 @@ function displayPokemonTypes(types) {
 }
 
 /**
- * @param {JSON} pokemones The pokemones to filter.
  * @param {string} type The pokemon type to filter by.
  */
-function filterPokemonesByType(pokemones, type) {
-	if (!type) {
-		return pokemones;
-	}
-	return pokemones.filter((pokemon) => pokemon.type.includes(type));
-}
+function filterPokemonesByType(type = "") {
+	const normalizedType = type.toLowerCase();
+
+	$('[data-ptype]').each((idx, element) => {
+		const $pkmn = $(element);
+		const types = $pkmn.data('ptype').toString().toLowerCase().split(' ');
+		
+		$pkmn.toggleClass('aria-selected', types.includes(normalizedType));
+	  });
+	}	
 
 function displayPokemones(pokemones) {
 	let container = $("#card-container")
@@ -64,6 +67,8 @@ function displayPokemones(pokemones) {
 
 		let clone = $(template.content.cloneNode(true));
 
+		clone.find(".card").attr("data-ptype", pokemon.type);
+
 		clone
 			.find(".card-front img")
 			.attr("src", imgSrc)
@@ -72,7 +77,7 @@ function displayPokemones(pokemones) {
 		clone.find(".nombre-pokemon").text(pokemon.name.english);
 
 		let typeList = clone.find(".tipos ul");
-		$.each(pokemon.type, function (idx, type) {
+		$.each(pokemon.type, function (idx, type) {					
 			$("<li>").text(type).appendTo(typeList);
 		});
 
