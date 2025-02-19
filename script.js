@@ -83,7 +83,7 @@ function displayPokemones(pokemones) {
 				.appendTo(statsList);
 		});
 
-		clone.find(".card").on("click", function () {
+		clone.find(".card").on("dblclick", function () {
 			$(this).toggleClass("flipped");
 		});
 

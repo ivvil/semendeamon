@@ -30,6 +30,7 @@ html {
   border-radius: 5px;
   color: var(--text-color);
   transition: transform 0.25s, box-shadow 0.25s;
+  user-select: none;
 
 }
 
