@@ -17,6 +17,21 @@ nav #types-select {
   justify-content: space-around;
 }
 
+@media (max-width: 600px) {
+  nav #types-select {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px; /* Separación entre botones */
+  }
+
+  nav #types-select button {
+    width: 45%; /* Dos botones por fila aproximadamente */
+    margin: 4px 0;
+    font-size: 0.8rem;
+  }
+}
+
 #card-container {
   display: flex;
   flex-wrap: wrap;
@@ -223,16 +238,18 @@ button:hover {
   }
 }
 button {
-  background-color: #2f2f2f; 
+  background-color: #2f2f2f;
   color: #ffffff;
   border: none;
   padding: 10px;
   transition: background-color 0.3s, color 0.3s, transform 0.3s;
   cursor: pointer;
+  border-radius: 10px;
+  margin: 0px 5px 0px 5px;
 }
 
 button:hover {
-  background-color: #fafafa; 
+  background-color: #fafafa;
   color: #333333;
   transform: scale(1.05);
 }
@@ -244,6 +261,46 @@ button.selected,
 }
 button.visited,
 [data-toggle-state="false"] {
-  background-color: #2f2f2f; 
+  background-color: #2f2f2f;
   color: #ffffff;
+}
+
+@media (min-width: 901px) {
+  nav #types-select {
+    display: flex;
+    justify-content: space-around;
+  }
+  nav #types-select button {
+    width: auto;
+    margin: 5px;
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+  nav #types-select {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+  nav #types-select button {
+    width: auto;
+    margin: 4px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 600px) {
+  nav #types-select {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+  }
+  nav #types-select button {
+    width: 45%;
+    margin: 4px 0;
+    font-size: 0.8rem;
+  }
 }

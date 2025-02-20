@@ -8,7 +8,6 @@ const videos = [
   "https://www.youtube.com/watch?v=3y4F32a5uME",
 ];
 
-// Convierte la URL estándar a una de tipo embed
 function getEmbedUrl(youtubeUrl) {
   const videoId = youtubeUrl.split("v=")[1];
   return "https://www.youtube.com/embed/" + videoId + "?autoplay=1";
@@ -79,12 +78,12 @@ $(document).ready(function () {
 function displayPokemonTypes(types) {
   const $select = $("nav #types-select");
 
-  const $allTypes = $("<button>", {
-    text: "Todos",
-    class: "toggle-button",
-    click: () => filterPokemonesByType(),
-  });
-  $select.append($allTypes);
+//   const $allTypes = $("<button>", {
+//     text: "Todos",
+//     class: "toggle-button",
+//     click: () => filterPokemonesByType(),
+//   });
+//   $select.append($allTypes);
 
   types.forEach((type) => {
     const $button = $("<button>", {
