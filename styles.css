@@ -12,7 +12,7 @@ html {
   font-family: "Press Start 2P", cursive;
 }
 
-nav #types-select{
+nav #types-select {
   display: flex;
   justify-content: space-around;
 }
@@ -27,7 +27,7 @@ nav #types-select{
   width: 250px;
   height: 300px;
   margin: 10px;
-  perspective: 1000px; 
+  perspective: 1000px;
   cursor: pointer;
   position: relative;
   background-color: var(--card-background-color);
@@ -36,12 +36,11 @@ nav #types-select{
   color: var(--text-color);
   transition: transform 0.25s, box-shadow 0.25s;
   user-select: none;
-
 }
 
-.card:hover{
-    box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.5);
-    transform: translateY(-10px);
+.card:hover {
+  box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.5);
+  transform: translateY(-10px);
 }
 
 .card-inner {
@@ -79,7 +78,7 @@ nav #types-select{
 .card-front img {
   width: 100%;
   height: 100%;
-  max-height: 150px; 
+  max-height: 150px;
   object-fit: contain;
   display: flex;
   justify-content: center;
@@ -95,7 +94,7 @@ nav #types-select{
   flex-direction: column;
 }
 
-select{
+select {
   padding: 10px;
   margin: 10px 0;
   border-radius: 5px;
@@ -105,11 +104,11 @@ select{
   box-shadow: 0 0 4px 1px rgba(37, 37, 37, 0.5);
 }
 
-img{
+img {
   filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.758));
 }
 
-button[type="submit"]{
+button[type="submit"] {
   padding: 10px;
   margin: 10px 0;
   border-radius: 5px;
@@ -142,28 +141,109 @@ button[type="submit"]{
 }
 
 ::-webkit-scrollbar {
-width: 10px;
-padding: 4px;
+  width: 10px;
+  padding: 4px;
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--background-color-scrollbar);
+  background: var(--background-color-scrollbar);
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: var(--card-background-color);
-    border-radius: 5px;
-    border: 2px solid var(--background-color);
+  background-color: var(--card-background-color);
+  border-radius: 5px;
+  border: 2px solid var(--background-color);
 }
 
-@keyframes card-selected{
-  0%{
+@keyframes card-selected {
+  0% {
     border: 3px solid rgba(166, 255, 158, 0.5);
   }
-  50%{
+  50% {
     border: 3px solid rgba(21, 255, 0, 0.5);
   }
-  100%{
+  100% {
     border: 3px solid rgba(166, 255, 158, 0.5);
   }
+}
+
+.video-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  color: white;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.video-overlay iframe {
+  width: 80vw;
+  height: 80vh;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.video-fade-in {
+  animation: fadeIn 0.5s forwards;
+}
+
+.video-fade-out {
+  animation: fadeOut 0.5s forwards;
+}
+
+button:hover {
+  background-color: red;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+}
+button {
+  background-color: #2f2f2f; 
+  color: #ffffff;
+  border: none;
+  padding: 10px;
+  transition: background-color 0.3s, color 0.3s, transform 0.3s;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #fafafa; 
+  color: #333333;
+  transform: scale(1.05);
+}
+
+button.selected,
+[data-toggle-state="true"] {
+  background-color: #fafafa;
+  color: #333333;
+}
+button.visited,
+[data-toggle-state="false"] {
+  background-color: #2f2f2f; 
+  color: #ffffff;
 }
