@@ -1,12 +1,6 @@
 let pokemones;
 
-const videos = [
-  "https://www.youtube.com/watch?v=wvy-pO65GhQ",
-  "https://www.youtube.com/watch?v=sR1hzqn8k5w",
-  "https://www.youtube.com/watch?v=5UuFlwqDyD0",
-  "https://www.youtube.com/watch?v=VaRldHkPR3A",
-  "https://www.youtube.com/watch?v=3y4F32a5uME",
-];
+let videos;
 
 function getEmbedUrl(youtubeUrl) {
   const videoId = youtubeUrl.split("v=")[1];
@@ -26,6 +20,16 @@ $(document).ready(function () {
 
   $.ajax({
     type: "GET",
+    url: "pokemon.json-master/videos.json",
+    dataType: "json",
+	success: (data) => {
+	  videos = data;
+	  console.log(data);
+	},
+  });
+
+  $.ajax({
+    type: "GET",
     url: "pokemon.json-master/types.json",
     dataType: "json",
     success: (data) => {
@@ -33,9 +37,7 @@ $(document).ready(function () {
       $(".toggle-button").each((idx, elmnt) => {
         const $button = $(elmnt);
         $button.attr("data-toggle-state", "false");
-        console.log($button);
         $button.on("click", (evt) => {
-          console.log(evt);
           const $target = $(evt.target);
 
           const currState = $target.attr("data-toggle-state");
@@ -108,10 +110,11 @@ function filterPokemonesByType(type = []) {
     if (types.includes(normalizedType)) {
       $pkmn.off("click").on("click", () => {
         const randomVideo = videos[Math.floor(Math.random() * videos.length)];
-        const embedUrl = getEmbedUrl(randomVideo);
+        const embedUrl = getEmbedUrl(randomVideo.url);
 
         const $overlay = $(`
           <div class="video-overlay">
+          <p>${randomVideo.name}</p>
             <iframe
               src="${embedUrl}"
               frameborder="0"

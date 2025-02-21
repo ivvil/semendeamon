@@ -9,10 +9,16 @@
 </head>
 
 <body>
-	<nav>	
-		<div id="types-select">		
+	<nav>
+		<div id="types-select">
 		</div>
 	</nav>
+
+	<template id="video-modal">
+		<p id="video-name"></p>
+		<iframe frameborder="0" allow="autoplay; encrypted-media" allowfullscreen class="video-fade-in"></iframe>
+		<h6>Presiona ESC para cerrar</h6>
+	</template>
 
 	<template id="pokemon-template">
 		<div class="card">
