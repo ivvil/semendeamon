@@ -15,9 +15,12 @@
 	</nav>
 
 	<template id="video-modal">
-		<p id="video-name"></p>
-		<iframe frameborder="0" allow="autoplay; encrypted-media" allowfullscreen class="video-fade-in"></iframe>
-		<h6>Presiona ESC para cerrar</h6>
+		<div class="video-overlay" id="video-overlay">
+			<p id="video-name"></p>
+			<iframe frameborder="0" allow="autoplay; encrypted-media" allowfullscreen class="video-fade-in"
+				id="video-player"></iframe>
+			<h6>Presiona ESC para cerrar</h6>
+		</div>
 	</template>
 
 	<template id="pokemon-template">
